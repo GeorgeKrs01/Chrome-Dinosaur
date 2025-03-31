@@ -62,6 +62,7 @@ public class ChromeDinosaur extends JPanel implements ActionListener, KeyListene
     int gravity = 1;
 
     boolean gameOver = false;
+    int score = 0;
 
     Timer gameLoop;
     Timer placeCactusTimer;
@@ -134,6 +135,16 @@ public class ChromeDinosaur extends JPanel implements ActionListener, KeyListene
             Block cactus = cactusArray.get(i);
             g.drawImage(cactus.img, cactus.x, cactus.y, cactus.width, cactus.height, null);
         }
+
+        //score
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Courier", Font.PLAIN, 32));
+        if (gameOver){
+            g.drawString("Game Over: " + String.valueOf(score), 10, 35);
+        }
+        else {
+            g.drawString(String.valueOf(score), 10, 35);
+        }
     }
 
     public void move() {
@@ -157,6 +168,9 @@ public class ChromeDinosaur extends JPanel implements ActionListener, KeyListene
                 dinosaur.img = dinosaurDeadImg;
             }
         }
+
+        //score
+        score++;
     }
 
     public boolean collision(Block a, Block b){
